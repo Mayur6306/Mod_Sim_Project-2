@@ -1,1 +1,53 @@
+\documentclass[10pt,conference]{IEEEtran}
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Project 2}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+\author{\IEEEauthorblockN{}}
+\maketitle
+
+\section{}
+
+
+\IEEEpeerreviewmaketitle
+
+\section{}
+
+\IEEEPARstart{}{} 
+
+ 
+
+\section{}
+
+\section{}
+
+ 
+
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+\bibliographystyle{IEEEtranS}
+\bibliography{reference}
+
+\end{document}
+
+
 
