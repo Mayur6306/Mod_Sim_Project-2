@@ -20,10 +20,20 @@
 % was not built to handle multiple paragraphs
 %
 
+
+
+
+%There are no solid statistics on estimated proportions of youths involved with gangs in memphis. However, we can make estimates drawing from population demographics.
+% Total number of juveniles in memphis(609,647 * 0.13)
+% (more accurate) percent in poverty * 0.231
+% Age distributions for gangs
+% Est. num of juvenile gang members in memphis  10000 * 0.40
+
+%Drawing from general age distributions of gangs, we can estimate that 
+%Susceptible : 
 \author{\IEEEauthorblockN{}}
 \maketitle
 
-\section{}
 
 
 \IEEEpeerreviewmaketitle
@@ -34,9 +44,32 @@
 
  
 
-\section{}
+\section{Introduction}
+Gang activity, defined by the National Gang Center to be "the coordinated or ongoing criminal, delinquent, or violent behavior carried out by a group of three or more individuals who share a collective identity, name, symbols, or territorial claim", is among the top drivers of violent crime in urban areas. In Memphis, TN especially, gang violence has historically contributed to nationally outstanding violent and drug-related crime rates. The involvement of juveniles, teens aged 10 to 17, has been a particular issue within gangs. It is estimated that around 40 percent of gang members are under the age of 18, putting these juveniles at risk of perpetrating and falling victim to violent crime. 
+\\
+\\
+A model proposed by Lee and Do (2011), displayed the spread of gang membership and delinquency due to peer pressure among at-risk juveniles to be similar to the spread of a disease. We seek to produce a similar model of gang-related juvenile delinquency based on data from Memphis, modeling susceptibility to and involvement with gang violence as similar to the spread of a contagious disease in order to better understand the dynamics of gang activity among vulnerable juveniles. 
+\\
+\\
+We also consider a number of initiatives which have been taken in the last few years to reduce gang activity in Memphis, both generally and among juveniles. These initiatives fall broadly into two categories: aggressive law enforcement campaigns and preventative youth outreach programs. In 2025, the Memphis Safe task force was formed to address the high prevalence of gang-related violent crime in Memphis. This is an example of aggressive efforts by law enforcement to reduce crime by increasing arrests and incarcerations. The Memphis-Shelby County school district has also implemented youth outreach programs such as Gang Resistance For Saving Society's Youth (G.R.A.S.S.Y.) which involves a mixture of youth intervention, education, and employment initiatives to reduce early gang involvement.  
 
-\section{}
+\section{Methods}
+
+We base our model on the SARS model outlined in section WW of Introduction to Computational Science. Like the model proposed by Lee and Do (2011), we include the following populations of at-risk juveniles: susceptible teens (S) who are not associated with or actively participating in gang violence, non-delinquent gang members (G) who are affiliated with gangs but not actively involved in criminal activity, delinquent gang members (D) who are involved with criminal activity but have not been detained by law enforcement, and law-enforced members (L) who have been apprehended by law enforcement and have no contact with other gang members. A member of S can become influenced to join a gang G through the influence of existing gang members. Furthermore, members of G may become members of D through a mixture of peer-pressure and personal issues. Members of G also occasionally return to S through good influences or fear. A certain number of delinquent gang members are apprehended by law enforcement and incarcerated before returning to S, G, or D. 
+\\
+\\
+Currently no precise estimates exist for juvenile gang membership and incarceration in Memphis, however estimates may be made using general gang violence statistics for Memphis and for the United States. 
+The  population of Memphis, according to the U.S. Census is around 609,647 for 2025 with an estimated 13 percent between the ages of 10 and 18. A very broad estimate for the susceptible population may then be said to be around 79,254. 
+According to "Gang Membership Between the Ages of 5 and 17 Years in the United States" an estimated 40 percent of urban gangs are juveniles between the ages of 5 and 17. The most recent estimate from the Tennessee Drug Threat Assessment puts the number of active gang members in Memphis at around 10000. Therefore, we estimate that the number of active juvenile gang members in Memphis, both delinquent and nondelinquent, to be about 4000. 
+\\
+\\
+For the sake of our model, we assume that all juveniles in Memphis are susceptible to gang activity, all are equally susceptible regardless of gender or socioeconomic status, and juveniles are only influenced to participate in gang activity by other juveniles. 
+
+
+
+
+
+
 
  
 
@@ -46,8 +79,9 @@
 
 \bibliographystyle{IEEEtranS}
 \bibliography{reference}
-
+%Juvenile gang membership: https://www.sciencedirect.com/science/article/abs/pii/S1054139X14007563
+%Memphis population stats: https://www.census.gov/quickfacts/memphiscitytennessee
+%Memphis age stats: https://www.neilsberg.com/insights/memphis-tn-population-by-age/
+%Gang membership in memphis: https://www.justice.gov/archive/ndic/pubs1/1017/overview.htm
+%Gang activity: 
 \end{document}
-
-
-
