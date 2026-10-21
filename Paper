@@ -1,5 +1,8 @@
 \documentclass[10pt,conference]{IEEEtran}
-
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{float}
 \begin{document}
 %
 % paper title
@@ -55,33 +58,39 @@ We also consider a number of initiatives which have been taken in the last few y
 
 \section{Methods}
 
-We base our model on the SARS model outlined in section WW of Introduction to Computational Science. Like the model proposed by Lee and Do (2011), we include the following populations of at-risk juveniles: susceptible teens (S) who are not associated with or actively participating in gang violence, non-delinquent gang members (G) who are affiliated with gangs but not actively involved in criminal activity, delinquent gang members (D) who are involved with criminal activity but have not been detained by law enforcement, and law-enforced members (L) who have been apprehended by law enforcement and have no contact with other gang members. A member of S can become influenced to join a gang G through the influence of existing gang members. Furthermore, members of G may become members of D through a mixture of peer-pressure and personal issues. Members of G also occasionally return to S through good influences or fear. A certain number of delinquent gang members are apprehended by law enforcement and incarcerated before returning to S, G, or D. 
+We base our model on the SARS model outlined in section WW of Introduction to Computational Science. In keeping with the model proposed by Lee and Do (2011), we include the following populations of at-risk juveniles: susceptible teens (S) who are not associated with or actively participating in gang violence, non-delinquent gang members (G) who are affiliated with gangs but not actively involved in criminal activity, delinquent gang members (D) who are involved with criminal activity but have not been detained by law enforcement, and law-enforced members (L) who have been apprehended by law enforcement and have no contact with other gang members. A member of S can become influenced to join a gang G through the influence of existing gang members. Furthermore, members of G may become members of D through a mixture of peer-pressure and personal issues. Members of G also occasionally return to S through good influences or fear. A certain number of delinquent gang members are apprehended by law enforcement and incarcerated before returning to S, G, or D. 
+\\
+\\
+For the sake of our model, we assume that all juveniles in Memphis are susceptible to gang activity, all are equally susceptible regardless of gender or socioeconomic status, and juveniles are only influenced to participate in gang activity by other juveniles. 
+\\
+\\
+\subsection{System Dynamics Overview}
+
+\subsection{Mathematical Model}
+We assume the following system of differential equations to model the transfer between populations. 
+
+
+$$\frac{dS}{dt} = r_G G(t) + r_L L(t) - j_G S(t)(G(t) + D(t)) $$
+$$\frac{dG}{dt} = j_G S(t)(G(t) + D(t)) + r_L L(t) - g_p G(t) - g_i G(t)D(t) - r_S G(t) $$
+$$\frac{dD}{dt} = g_P G(t) + g_i G(t) D(t) + r_L L(t) - iD(t) $$
+$$\frac{dL}{dt} = i D(t) - 3r_i L(t)$$
+
+Where $r_G$ is the rate at which non-delinquent gang members return to being susceptible, $r_L$ is the rate at which incarcerated juveniles return to the susceptible group, $j_G$ is the rate at which susceptible juveniles are influenced to join gangs, $g_p$ is the rate at which gang members become delinquent due to personal reasons, $g_i$ is the rate at which gang members become delinquent due to influence, $r_S$ is the rate at which non-delinquent gang members return to the susceptible population, and $i$ is the rate at which delinquent gang members become incarcerated.
+
 \\
 \\
 Currently no precise estimates exist for juvenile gang membership and incarceration in Memphis, however estimates may be made using general gang violence statistics for Memphis and for the United States. 
 The  population of Memphis, according to the U.S. Census is around 609,647 for 2025 with an estimated 13 percent between the ages of 10 and 18. A very broad estimate for the susceptible population may then be said to be around 79,254. 
-According to "Gang Membership Between the Ages of 5 and 17 Years in the United States" an estimated 40 percent of urban gangs are juveniles between the ages of 5 and 17. The most recent estimate from the Tennessee Drug Threat Assessment puts the number of active gang members in Memphis at around 10000. Therefore, we estimate that the number of active juvenile gang members in Memphis, both delinquent and nondelinquent, to be about 4000. 
+According to "Gang Membership Between the Ages of 5 and 17 Years in the United States" an estimated 40 percent of urban gangs are juveniles between the ages of 5 and 17. The most recent estimate from the Tennessee Drug Threat Assessment puts the number of active gang members in Memphis at around 10000. Therefore, we estimate that the number of active juvenile gang members in Memphis, both delinquent and non-delinquent, to be about 4000. 
 \\
 \\
-For the sake of our model, we assume that all juveniles in Memphis are susceptible to gang activity, all are equally susceptible regardless of gender or socioeconomic status, and juveniles are only influenced to participate in gang activity by other juveniles. 
+We may also account for efforts to curb juvenile gang activity in our model, in particular, we examine efforts from Memphis-Shelby County Schools and the Memphis Safe Task Force to reduce gang activity. The G.R.A.S.S.Y. program, an early prevention program aimed at protecting adolescents from gang influence, is active in many Memphis schools. We model this prevention as a kind of vaccination against gang activity, creating a new population of "vaccinated" students V. We assume in modeling this prevention program that students influenced by it are entirely immune to its effects. Another effort to curb gang activity is the Memphis Safe Task Force which has cracked down hard against violent crime in 2025 and 2026, claiming to have arrested 1,461 gang members as of September, 2026. To model the increase, we increase the incarceration rate for delinquent gang members, WWW as well as the number of months spent incarcerated. WWW These changes produce the following system of differential equations. 
 
+$$\frac{dS}{dt} = r_G G(t) + r_L L(t) - j_G S(t)(G(t) + D(t)) - vS(t) $$
+$$\frac{dV}{dt} = vS(t)$$
+$$\frac{dG}{dt} = j_G S(t)(G(t) + D(t)) + r_L L(t) - g_p G(t) - g_i G(t)D(t) - r_S G(t) $$
+$$\frac{dD}{dt} = g_P G(t) + g_i G(t) D(t) + r_L L(t) - i_1D(t) $$
+$$\frac{dL}{dt} = i_1 D(t) - 3r_i L(t)$$
 
+Where $v$ is the number of juveniles influenced away from gang activity who are no longer susceptible, and $i_2$ is the increased incarceration rate. Data from Memphis Police Department from 2024 reports a total of 19,000 arrests made while data from 2026 reports that the Memphis Safe Task Force has made a total of 23,000 arrests during its first year of operation. This represents a 21 percent increase in arrests, which has been applied to the initial incarceration rate accordingly. 
 
-
-
-
-
- 
-
-
-% needed in second column of first page if using \IEEEpubid
-%\IEEEpubidadjcol
-
-\bibliographystyle{IEEEtranS}
-\bibliography{reference}
-%Juvenile gang membership: https://www.sciencedirect.com/science/article/abs/pii/S1054139X14007563
-%Memphis population stats: https://www.census.gov/quickfacts/memphiscitytennessee
-%Memphis age stats: https://www.neilsberg.com/insights/memphis-tn-population-by-age/
-%Gang membership in memphis: https://www.justice.gov/archive/ndic/pubs1/1017/overview.htm
-%Gang activity: 
-\end{document}
