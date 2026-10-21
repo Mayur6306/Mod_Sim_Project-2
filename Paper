@@ -1,6 +1,6 @@
 \documentclass[10pt,conference]{IEEEtran}
 \usepackage{graphicx}
-\usepackage{amsmath}
+\usepackage{amsmath,amssymb}
 \usepackage{titlesec}
 \usepackage{float}
 \begin{document}
@@ -70,13 +70,26 @@ For the sake of our model, we assume that all juveniles in Memphis are susceptib
 We assume the following system of differential equations to model the transfer between populations. 
 
 
-$$\frac{dS}{dt} = r_G G(t) + r_L L(t) - j_G S(t)(G(t) + D(t)) $$
-$$\frac{dG}{dt} = j_G S(t)(G(t) + D(t)) + r_L L(t) - g_p G(t) - g_i G(t)D(t) - r_S G(t) $$
-$$\frac{dD}{dt} = g_P G(t) + g_i G(t) D(t) + r_L L(t) - iD(t) $$
-$$\frac{dL}{dt} = i D(t) - 3r_i L(t)$$
+
+\begin{align}
+\frac{dS}{dt} = r_G G(t) + r_L L(t) - \\ j_G S(t)(G(t) + D(t)) \\
+\frac{dG}{dt} = j_G S(t)(G(t) + D(t)) + r_L L(t) \\- g_p G(t) - g_i G(t)D(t) - r_S G(t) \\
+\frac{dD}{dt} = g_P G(t) + g_i G(t) D(t) + r_L L(t)\\ - iD(t) \\
+\frac{dL}{dt} = i D(t) - 3r_L L(t)\\
+\end{align}
+   
+
+
+\begin{align}
+    j_G = 0.6 \\
+    g_p = 0.14\\
+    g_i = 1\\
+    i = 0.245\\
+    r_L = 0.33  
+\end{align}
+          
 
 Where $r_G$ is the rate at which non-delinquent gang members return to being susceptible, $r_L$ is the rate at which incarcerated juveniles return to the susceptible group, $j_G$ is the rate at which susceptible juveniles are influenced to join gangs, $g_p$ is the rate at which gang members become delinquent due to personal reasons, $g_i$ is the rate at which gang members become delinquent due to influence, $r_S$ is the rate at which non-delinquent gang members return to the susceptible population, and $i$ is the rate at which delinquent gang members become incarcerated.
-
 \\
 \\
 Currently no precise estimates exist for juvenile gang membership and incarceration in Memphis, however estimates may be made using general gang violence statistics for Memphis and for the United States. 
@@ -92,5 +105,9 @@ $$\frac{dG}{dt} = j_G S(t)(G(t) + D(t)) + r_L L(t) - g_p G(t) - g_i G(t)D(t) - r
 $$\frac{dD}{dt} = g_P G(t) + g_i G(t) D(t) + r_L L(t) - i_1D(t) $$
 $$\frac{dL}{dt} = i_1 D(t) - 3r_i L(t)$$
 
-Where $v$ is the number of juveniles influenced away from gang activity who are no longer susceptible, and $i_2$ is the increased incarceration rate. Data from Memphis Police Department from 2024 reports a total of 19,000 arrests made while data from 2026 reports that the Memphis Safe Task Force has made a total of 23,000 arrests during its first year of operation. This represents a 21 percent increase in arrests, which has been applied to the initial incarceration rate accordingly. 
+\begin{align}
+    v = 0.1 \\
+    i_1 = 0.296
+\end{align}
 
+Where $v$ is the number of juveniles influenced away from gang activity who are no longer susceptible, and $i_2$ is the increased incarceration rate. Data from Memphis Police Department from 2024 reports a total of 19,000 arrests made while data from 2026 reports that the Memphis Safe Task Force has made a total of 23,000 arrests during its first year of operation. This represents a 21 percent increase in arrests, which has been applied to the initial incarceration rate accordingly. 
