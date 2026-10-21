@@ -1,9 +1,69 @@
-\documentclass[10pt,conference]{IEEEtran}
+\documentclass[10pt,conference]{article}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
 \usepackage{titlesec}
 \usepackage{float}
+
+% Full-width line below every section title
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {\thesection}{1em}
+  {}
+  [{\titlerule[0.8pt]}]
+
+% Embedded Bibliography
+\begin{filecontents*}{\jobname.bib}
+@book{shiflet2014,
+  author    = {Angela B. Shiflet and George W. Shiflet},
+  title     = {Introduction to Computational Science: Modeling and Simulation for the Sciences},
+  edition   = {2nd},
+  publisher = {Princeton University Press},
+  year      = {2014},
+  address   = {Princeton, NJ}
+}
+
+@article{bustamante1996,
+  author  = {Bustamante, Javier},
+  title   = {Population Viability Analysis of Captive and Released Bearded Vultures},
+  journal = {Conservation Biology},
+  volume  = {10},
+  number  = {3},
+  pages   = {822--831},
+  year    = {1996}
+}
+
+@techreport{usfws2024,
+  author      = {{U.S. Fish and Wildlife Service}},
+  title       = {California Condor Recovery Program: 2024 Annual Population Status Report},
+  institution = {U.S. Fish and Wildlife Service, Pacific Southwest Region},
+  address     = {Sacramento, CA},
+  year        = {2024}
+}
+
+@book{snyder2000,
+  author    = {Noel F. R. Snyder and Helen A. Snyder},
+  title     = {The California Condor: A Saga of Natural History and Conservation},
+  publisher = {Academic Press},
+  address   = {San Diego, CA},
+  year      = {2000}
+}
+
+@article{meretsky2000,
+  author  = {V. J. Meretsky and N. F. R. Snyder and S. R. Beissinger and D. A. Clendenen and J. W. Wiley},
+  title   = {Demography of the California Condor: Implications for Reintroduction and Recovery},
+  journal = {Conservation Biology},
+  volume  = {14},
+  number  = {4},
+  pages   = {957--967},
+  year    = {2000}
+}
+\end{filecontents*}
+\title{Project Two: Modeling Juvenile Delinquency}
+\author{}
+\date{October 2026}
+
 \begin{document}
+\maketitle
 %
 % paper title
 % Titles are generally capitalized except for words such as a, an, and, as,
@@ -11,7 +71,7 @@
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Project 2}
+
 %
 %
 % author names and IEEE memberships
@@ -34,16 +94,6 @@
 
 %Drawing from general age distributions of gangs, we can estimate that 
 %Susceptible : 
-\author{\IEEEauthorblockN{}}
-\maketitle
-
-
-
-\IEEEpeerreviewmaketitle
-
-\section{}
-
-\IEEEPARstart{}{} 
 
  
 
@@ -58,23 +108,23 @@ We also consider a number of initiatives which have been taken in the last few y
 
 \section{Methods}
 
+
+\subsection{System Dynamics Overview}
 We base our model on the SARS model outlined in section WW of Introduction to Computational Science. In keeping with the model proposed by Lee and Do (2011), we include the following populations of at-risk juveniles: susceptible teens (S) who are not associated with or actively participating in gang violence, non-delinquent gang members (G) who are affiliated with gangs but not actively involved in criminal activity, delinquent gang members (D) who are involved with criminal activity but have not been detained by law enforcement, and law-enforced members (L) who have been apprehended by law enforcement and have no contact with other gang members. A member of S can become influenced to join a gang G through the influence of existing gang members. Furthermore, members of G may become members of D through a mixture of peer-pressure and personal issues. Members of G also occasionally return to S through good influences or fear. A certain number of delinquent gang members are apprehended by law enforcement and incarcerated before returning to S, G, or D. 
 \\
 \\
 For the sake of our model, we assume that all juveniles in Memphis are susceptible to gang activity, all are equally susceptible regardless of gender or socioeconomic status, and juveniles are only influenced to participate in gang activity by other juveniles. 
 \\
 \\
-\subsection{System Dynamics Overview}
-
 \subsection{Mathematical Model}
 We assume the following system of differential equations to model the transfer between populations. 
 
 
 
 \begin{align}
-\frac{dS}{dt} = r_G G(t) + r_L L(t) - \\ j_G S(t)(G(t) + D(t)) \\
-\frac{dG}{dt} = j_G S(t)(G(t) + D(t)) + r_L L(t) \\- g_p G(t) - g_i G(t)D(t) - r_S G(t) \\
-\frac{dD}{dt} = g_P G(t) + g_i G(t) D(t) + r_L L(t)\\ - iD(t) \\
+\frac{dS}{dt} = r_G G(t) + r_L L(t) -  j_G S(t)(G(t) + D(t)) \\
+\frac{dG}{dt} = j_G S(t)(G(t) + D(t)) + r_L L(t) - g_p G(t) - g_i G(t)D(t) - r_S G(t) \\
+\frac{dD}{dt} = g_P G(t) + g_i G(t) D(t) + r_L L(t) - iD(t) \\
 \frac{dL}{dt} = i D(t) - 3r_L L(t)\\
 \end{align}
    
@@ -92,22 +142,61 @@ We assume the following system of differential equations to model the transfer b
 Where $r_G$ is the rate at which non-delinquent gang members return to being susceptible, $r_L$ is the rate at which incarcerated juveniles return to the susceptible group, $j_G$ is the rate at which susceptible juveniles are influenced to join gangs, $g_p$ is the rate at which gang members become delinquent due to personal reasons, $g_i$ is the rate at which gang members become delinquent due to influence, $r_S$ is the rate at which non-delinquent gang members return to the susceptible population, and $i$ is the rate at which delinquent gang members become incarcerated.
 \\
 \\
-Currently no precise estimates exist for juvenile gang membership and incarceration in Memphis, however estimates may be made using general gang violence statistics for Memphis and for the United States. 
-The  population of Memphis, according to the U.S. Census is around 609,647 for 2025 with an estimated 13 percent between the ages of 10 and 18. A very broad estimate for the susceptible population may then be said to be around 79,254. 
-According to "Gang Membership Between the Ages of 5 and 17 Years in the United States" an estimated 40 percent of urban gangs are juveniles between the ages of 5 and 17. The most recent estimate from the Tennessee Drug Threat Assessment puts the number of active gang members in Memphis at around 10000. Therefore, we estimate that the number of active juvenile gang members in Memphis, both delinquent and non-delinquent, to be about 4000. 
+Estimates for initial population proportions are based primarily off of data from the U.S. Census, Department of Justice, and Memphis Police Department. Currently no precise estimates exist for juvenile gang membership and incarceration in Memphis, however estimates may be made using general gang violence statistics for Memphis and for the United States. 
+The  population of Memphis, according to the U.S. Census is around 609,647 for 2025 with an estimated 13 percent between the ages of 10 and 18. A very broad estimate for the total juvenile population may then be said to be around 79,254. If we take into account only those juveniles living below the poverty line, who may be more susceptible to gang influence, our total population is 30,750.
+According to "Gang Membership Between the Ages of 5 and 17 Years in the United States" an estimated 40 percent of urban gangs are juveniles between the ages of 5 and 17. The most recent estimate from the Tennessee Drug Threat Assessment puts the number of active gang members in Memphis at around 10000. Therefore, we estimate that the number of active juvenile gang members in Memphis, both delinquent and non-delinquent, to be about 4000. A total of 1,142 juveniles were held in detention in 2024. In 2026, the Memphis Safe Task Force reported that out of a total 13,140 arrests, 1,461 were of known gang members. Assuming that this proportion is representative of overall trends in organized crime, we assume that a total of 127 juvenile gang members are incarcerated. In total, this results in a population that is 87 percent susceptible, 10.5 percent gang affiliated non-delinquent, 2.6 percent gang affiliated delinquent, and 0.4 percent arrested and detained. 
 \\
 \\
-We may also account for efforts to curb juvenile gang activity in our model, in particular, we examine efforts from Memphis-Shelby County Schools and the Memphis Safe Task Force to reduce gang activity. The G.R.A.S.S.Y. program, an early prevention program aimed at protecting adolescents from gang influence, is active in many Memphis schools. We model this prevention as a kind of vaccination against gang activity, creating a new population of "vaccinated" students V. We assume in modeling this prevention program that students influenced by it are entirely immune to its effects. Another effort to curb gang activity is the Memphis Safe Task Force which has cracked down hard against violent crime in 2025 and 2026, claiming to have arrested 1,461 gang members as of September, 2026. To model the increase, we increase the incarceration rate for delinquent gang members, WWW as well as the number of months spent incarcerated. WWW These changes produce the following system of differential equations. 
+We may also account for efforts to curb juvenile gang activity in our model, in particular, we examine efforts from Memphis-Shelby County Schools and the Memphis Safe Task Force to reduce gang activity. The G.R.A.S.S.Y. program, an early prevention program aimed at protecting adolescents from gang influence, is active in many Memphis schools. We model this prevention as a kind of vaccination against gang activity, creating a new population of students who have been reached by intervention methods, denoted V. We assume in modeling this prevention program that students influenced by it are entirely immune to factors that might otherwise influence them to gang activity. A recent effort to curb gang activity is the Memphis Safe Task Force, which has cracked down hard against violent crime in 2025 and 2026, claiming to have arrested 1,461 gang members as of September 2026. To model the increase, we increase the incarceration rate for delinquent gang members to model the increase in arrests reported in the first year of the task force's operation. These changes produce the following system of  equations. 
 
-$$\frac{dS}{dt} = r_G G(t) + r_L L(t) - j_G S(t)(G(t) + D(t)) - vS(t) $$
-$$\frac{dV}{dt} = vS(t)$$
-$$\frac{dG}{dt} = j_G S(t)(G(t) + D(t)) + r_L L(t) - g_p G(t) - g_i G(t)D(t) - r_S G(t) $$
-$$\frac{dD}{dt} = g_P G(t) + g_i G(t) D(t) + r_L L(t) - i_1D(t) $$
-$$\frac{dL}{dt} = i_1 D(t) - 3r_i L(t)$$
-
+\begin{align}
+\frac{dS}{dt} = r_G G(t) + r_L L(t) - j_G S(t)(G(t) + D(t)) - vS(t) \\
+\frac{dV}{dt} = vS(t)\\
+\frac{dG}{dt} = j_G S(t)(G(t) + D(t)) + r_L L(t) - g_p G(t) - g_i G(t)D(t) - r_S G(t) \\
+\frac{dD}{dt} = g_P G(t) + g_i G(t) D(t) + r_L L(t) - i_1D(t) \\
+\frac{dL}{dt} = i_1 D(t) - 3r_i L(t)\\
+\end{align}
 \begin{align}
     v = 0.1 \\
     i_1 = 0.296
 \end{align}
 
 Where $v$ is the number of juveniles influenced away from gang activity who are no longer susceptible, and $i_2$ is the increased incarceration rate. Data from Memphis Police Department from 2024 reports a total of 19,000 arrests made while data from 2026 reports that the Memphis Safe Task Force has made a total of 23,000 arrests during its first year of operation. This represents a 21 percent increase in arrests, which has been applied to the initial incarceration rate accordingly. 
+
+\section{Results}
+\subsection{Initial Model}
+
+\subsection{Modeling Increased Socioeconomic Status}
+
+\subsection{Applying Memphis Parameters}
+
+\subsection{Intervention Methods}
+
+\subsubsection{Increased Policing}
+
+\subsubsection{Early Intervention}
+
+
+
+\section{Discussion}
+\subsection{Ethical Considerations}
+It is important when modeling social phenomena to seriously consider potential the ethical concerns inherent in such modeling. 
+
+\subsection{Overall Trends}
+ 
+
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+\bibliographystyle{IEEEtranS}
+\bibliography{reference}
+%Juvenile gang membership: https://www.sciencedirect.com/science/article/abs/pii/S1054139X14007563
+%Memphis population stats: https://www.census.gov/quickfacts/memphiscitytennessee
+%Memphis age stats: https://www.neilsberg.com/insights/memphis-tn-population-by-age/
+%Gang membership in memphis: https://www.justice.gov/archive/ndic/pubs1/1017/overview.htm
+%Gang activity: 
+% Poverty: https://www.memphis.edu/socialwork/research/2025-poverty-fact-sheet-updated.pdf
+\end{document}
+
+
