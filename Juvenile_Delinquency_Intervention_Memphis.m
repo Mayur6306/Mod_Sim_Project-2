@@ -1,5 +1,4 @@
-
-% Juvenile Delinquency Model
+% Juvenile Delinquency Model - Memphis
 % MTH/CSC 4170 - Project 2
 
 %% Clear workspace
@@ -21,7 +20,7 @@ r = 0.235;           % arrest rate (1/year)
 %r = 0.296;           % intervention arrest rate (1/year)
 u = 3;               % release rate (1/year)
 m = 1/5;             % aging rate (1/year)
-v = 0.0;             % intervention rate (1/year)
+v = 0;             % intervention rate (1/year)
 
 %% Run both scenarios
 
@@ -31,7 +30,7 @@ for scenario = 1:2
     if scenario == 1
         p = 1.00;    % peer pressure rate (1/year)
         q = 0.30;    % gang departure rate (1/year)
-        scenarioName = 'Part A: Original Population';
+        scenarioName = 'Memphis Population';
     else
         p = 0.42;    % peer pressure rate (1/year)
         q = 0.50;    % gang departure rate (1/year)
@@ -143,7 +142,7 @@ for scenario = 1:2
     %% Equilibrium Percentages
 
     disp(scenarioName)
-    disp(['Susceptible: ', num2str(S(end)/N0*100), '%'])
+    disp(['Susceptible and Immune: ', num2str(S(end)/N0*100 + V(end)/N0*100), '%'])
     disp(['Non-Delinquent Gang Members: ', num2str(G(end)/N0*100), '%'])
     disp(['Delinquent Gang Members: ', num2str(D(end)/N0*100), '%'])
     disp(['Law-Enforced: ', num2str(L(end)/N0*100), '%'])
@@ -166,3 +165,4 @@ for scenario = 1:2
     title([scenarioName ' - All Populations'], 'fontsize', 20);
 
 end
+
