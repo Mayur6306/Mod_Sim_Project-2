@@ -18,7 +18,7 @@ N0 = 10000;          % total juvenile population
 b = 0.60;            % gang recruitment rate (1/year)
 a = 0.14;            % independent delinquency rate (1/year)
 r = 0.235;           % arrest rate (1/year)
-u = 3;               % release rate (1/year)
+u = 1;               % release rate (1/year)1
 m = 1/5;             % aging rate (1/year)
 
 %% Run both scenarios
@@ -64,9 +64,9 @@ for scenario = 1:2
         D_to_L = r * D(i-1);
 
         % Law-enforced released equally to S, G, and D
-        L_to_S = (u / 3) * L(i-1);
-        L_to_G = (u / 3) * L(i-1);
-        L_to_D = (u / 3) * L(i-1);
+        L_to_S = u * L(i-1);
+        L_to_G = u * L(i-1);
+        L_to_D = u * L(i-1);
 
         % Aging into and out of the population
         Enter_S = m * N0;
