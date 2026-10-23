@@ -18,7 +18,7 @@ N0 = 10000;          % total juvenile population
 b = 0.60;            % gang recruitment rate (1/year)
 a = 0.14;            % independent delinquency rate (1/year)
 r = 0.235;           % arrest rate (1/year)
-u = 1;               % release rate (1/year)1
+u = 1;               % release rate (1/year)
 m = 1/5;             % aging rate (1/year)
 
 %% Run both scenarios
